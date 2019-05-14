@@ -41,6 +41,8 @@ getdef = $(shell sed -n "0,/$(1)/s/\#define\s\+$(1)\s\+\(\w*\)/\1/p" $(2))
 
 ifeq ($(PLATFORM),x86_64)
 getarch = $(shell [ -f /etc/debian_version ] && echo "amd64" || echo "x86_64")
+else ifeq ($(PLATFORM),aarch64)
+getarch = $(shell [ -f /etc/debian_version ] && echo "aarch64" || echo "arm64")
 else ifeq ($(PLATFORM),ppc64le)
 getarch = $(shell [ -f /etc/debian_version ] && echo "ppc64el" || echo "ppc64le")
 else
